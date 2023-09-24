@@ -6,10 +6,13 @@ import "./App.css";
 import type { RootState } from "./store";
 import { useSelector, useDispatch } from "react-redux";
 import { decrement, increment } from "./store/tempSlice";
+import { useGetPerformanceByIdQuery } from "./services/performace";
 
 function App() {
   const count = useSelector((state: RootState) => state.counter.value);
   const dispatch = useDispatch();
+
+  const { data, error, isLoading } = useGetPerformanceByIdQuery("21813");
 
   return (
     <>
@@ -23,10 +26,13 @@ function App() {
       </div>
       <h1 className="bg-green-300">Vite + React</h1>
       <div className="card">
-        <button onClick={() => dispatch(increment())}>count is {count}</button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+        {error ? (
+          <>error</>
+        ) : isLoading ? (
+          <>loading...</>
+        ) : data ? (
+          <code>{JSON.stringify(data)}</code>
+        ) : null}
       </div>
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
