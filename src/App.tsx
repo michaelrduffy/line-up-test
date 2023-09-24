@@ -1,8 +1,12 @@
+import { useSelector } from "react-redux";
 import PriceBand from "./components/PriceBand";
 import { useGetPerformanceByIdQuery } from "./services/performance";
+import { RootState } from "./store";
 
 function App() {
   const { data, error, isLoading } = useGetPerformanceByIdQuery("21813");
+  const basket = useSelector((state: RootState) => state.basket);
+  console.log("basket", basket);
   console.log(data?.data);
   const priceBands = data?.data.pricing;
 

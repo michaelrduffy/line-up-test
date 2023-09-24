@@ -1,5 +1,7 @@
 import { HTMLAttributes, PropsWithChildren } from "react";
 import { PricingBandWithVariants, PricingVariant } from "../types/performance";
+import { useDispatch } from "react-redux";
+import { addTicket } from "../store/basketSlice";
 
 const Button = (
   props: PropsWithChildren & HTMLAttributes<HTMLButtonElement>
@@ -21,6 +23,7 @@ const PriceVariant = (props: {
   band: PricingBandWithVariants;
 }) => {
   const { variant, band } = props;
+  const dispatch = useDispatch();
   const fees = variant.adjusters.reduce((a, b) => {
     if (b.rateType === "FIXED_RATE") {
       return a + b.rate;
@@ -46,7 +49,9 @@ const PriceVariant = (props: {
       <div className="col-span-1 flex justify-center gap-4 items-center">
         <Button>-</Button>
         <p>0</p>
-        <Button>+</Button>
+        <Button onClick={() => dispatch(addTicket({ ...variant, band }))}>
+          +
+        </Button>
       </div>
     </div>
   );
