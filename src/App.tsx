@@ -7,8 +7,8 @@ function App() {
   const priceBands = data?.data.pricing;
 
   return (
-    <>
-      <div className="card">
+    <main className="w-full flex flex-col">
+      <div className="w-[80%] lg:w-3/4 max-w-[1280px] mx-auto my-16">
         {error ? (
           <>error</>
         ) : isLoading ? (
@@ -22,7 +22,7 @@ function App() {
           ))
         ) : null}
       </div>
-    </>
+    </main>
   );
 }
 

@@ -9,6 +9,7 @@ const PriceBand = (props: { priceBand: PricingBandWithVariants }) => {
       {variants.map((variant) => (
         <PriceVariant
           variant={variant}
+          band={priceBand}
           key={`priceVariant_${variant.id}_${priceBand.id}`}
         />
       ))}
