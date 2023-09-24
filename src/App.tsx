@@ -6,7 +6,7 @@ import "./App.css";
 import type { RootState } from "./store";
 import { useSelector, useDispatch } from "react-redux";
 import { decrement, increment } from "./store/tempSlice";
-import { useGetPerformanceByIdQuery } from "./services/performace";
+import { useGetPerformanceByIdQuery } from "./services/performance";
 
 function App() {
   const count = useSelector((state: RootState) => state.counter.value);

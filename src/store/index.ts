@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import counterReducer from "./tempSlice";
-import { performanceApi } from "../services/performace";
+import { performanceApi } from "../services/performance";
 
 export const store = configureStore({
   reducer: {
