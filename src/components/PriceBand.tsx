@@ -1,4 +1,4 @@
-import { PricingBandWithVariants, PricingMap } from "../types/performance";
+import { PricingBandWithVariants } from "../types/performance";
 import PriceVariant from "./PriceVariant";
 
 const PriceBand = (props: { priceBand: PricingBandWithVariants }) => {
