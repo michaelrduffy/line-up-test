@@ -3,11 +3,45 @@ type Pricing = {
   value: number;
 };
 
-type PricingMap = {
+type Adjuster = {
+  id: number;
+  name?: string;
+  description?: string;
+  external: boolean;
+  rateType: {
+    description: string;
+  };
+  rate: number;
+  price: Pricing;
+};
+
+type Discount = {
   id: number;
   name: string;
-  description: string;
+};
+
+type PricingVariant = {
+  id: number;
+  name: string;
+  description?: string;
   price: Pricing;
+  adjusters: Adjuster[];
+  discounts: Discount[];
+};
+
+type PricingBandWithVariants = {
+  id: number;
+  name: string;
+  description?: string;
+  color: string;
+  variants: PricingVariant[];
+};
+
+type PricingMap = {
+  id: number;
+  capacity: number;
+  capacityRemaining: number;
+  priceBand: PricingBandWithVariants;
 };
 
 export type LineUpPerformance = {
