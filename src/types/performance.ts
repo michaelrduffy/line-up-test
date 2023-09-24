@@ -27,11 +27,14 @@ export type PricingVariant = {
   discounts: Discount[];
 };
 
-export type PricingBandWithVariants = {
+export type PricingBand = {
   id: number;
   name: string;
   description?: string;
   color: string;
+};
+
+export type PricingBandWithVariants = PricingBand & {
   variants: PricingVariant[];
 };
 
