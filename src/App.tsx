@@ -13,6 +13,7 @@ function App() {
   // const dispatch = useDispatch();
 
   const { data, error, isLoading } = useGetPerformanceByIdQuery("21813");
+  console.log(data?.data.totalCapacity);
 
   return (
     <>

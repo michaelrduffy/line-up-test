@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import type { LineUpPerformance } from "../types/performance";
 
 export const performanceApi = createApi({
   reducerPath: "performance",
@@ -14,7 +15,7 @@ export const performanceApi = createApi({
     },
   }),
   endpoints: (builder) => ({
-    getPerformanceById: builder.query<unknown, string>({
+    getPerformanceById: builder.query<{ data: LineUpPerformance }, string>({
       query: (id) => `performance/${id}`,
     }),
   }),
