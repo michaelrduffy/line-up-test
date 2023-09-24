@@ -8,9 +8,7 @@ type Adjuster = {
   name?: string;
   description?: string;
   external: boolean;
-  rateType: {
-    description: string;
-  };
+  rateType: "FIXED_RATE" | string;
   rate: number;
   price: Pricing;
 };
@@ -20,7 +18,7 @@ type Discount = {
   name: string;
 };
 
-type PricingVariant = {
+export type PricingVariant = {
   id: number;
   name: string;
   description?: string;
@@ -29,7 +27,7 @@ type PricingVariant = {
   discounts: Discount[];
 };
 
-type PricingBandWithVariants = {
+export type PricingBandWithVariants = {
   id: number;
   name: string;
   description?: string;
@@ -37,7 +35,7 @@ type PricingBandWithVariants = {
   variants: PricingVariant[];
 };
 
-type PricingMap = {
+export type PricingMap = {
   id: number;
   capacity: number;
   capacityRemaining: number;
