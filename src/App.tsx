@@ -3,8 +3,13 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 
+import type { RootState } from "./store";
+import { useSelector, useDispatch } from "react-redux";
+import { decrement, increment } from "./store/tempSlice";
+
 function App() {
-  const [count, setCount] = useState(0);
+  const count = useSelector((state: RootState) => state.counter.value);
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -18,9 +23,7 @@ function App() {
       </div>
       <h1 className="bg-green-300">Vite + React</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
+        <button onClick={() => dispatch(increment())}>count is {count}</button>
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
