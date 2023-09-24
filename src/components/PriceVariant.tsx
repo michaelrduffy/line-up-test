@@ -9,8 +9,8 @@ const Button = (
   props: PropsWithChildren & HTMLAttributes<HTMLButtonElement>
 ) => (
   <button
-    className="bg-blue-600 w-[64px] h-[64px] p-2 rounded-full aspect-square block text-white text-xl font-bold hover:bg-blue-800 hover:scale-[0.98] transition duration-200"
     {...props}
+    className={`bg-blue-600 w-[64px] h-[64px] p-2 rounded-full aspect-square block text-white text-xl font-bold hover:bg-blue-800 hover:scale-[0.98] transition duration-200 ${props.className}`}
   />
 );
 
@@ -30,6 +30,8 @@ const PriceVariant = (props: {
     //Handle other types of rates here:
     return a;
   }, 0);
+
+  //TODO: Handle discounts in the same way
   return (
     <div className="w-full grid py-8 border-b-2 grid-cols-4 gap-8">
       <div className="col-span-2 flex flex-col gap-2">
@@ -47,6 +49,11 @@ const PriceVariant = (props: {
       </div>
       <div className="col-span-1 flex justify-end gap-4 items-center">
         <Button
+          className={
+            qty < 1
+              ? "bg-gray-300 hover:bg-gray-300 cursor-default hover:scale-[1]"
+              : ""
+          }
           onClick={() => dispatch(removeTicket(`${band.id}_${variant.id}`))}
         >
           -

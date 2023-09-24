@@ -18,6 +18,9 @@ export const performanceApi = createApi({
     getPerformanceById: builder.query<{ data: LineUpPerformance }, string>({
       query: (id) => `performance/${id}`,
     }),
+    /*
+    Checkout/Add to basket
+    */
   }),
 });
 
