@@ -1,7 +1,8 @@
 import { HTMLAttributes, PropsWithChildren } from "react";
 import { PricingBandWithVariants, PricingVariant } from "../types/performance";
-import { useDispatch } from "react-redux";
-import { addTicket } from "../store/basketSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { addTicket, removeTicket } from "../store/basketSlice";
+import { RootState } from "../store";
 
 const Button = (
   props: PropsWithChildren & HTMLAttributes<HTMLButtonElement>
@@ -23,6 +24,9 @@ const PriceVariant = (props: {
   band: PricingBandWithVariants;
 }) => {
   const { variant, band } = props;
+  const qty = useSelector((state: RootState) => {
+    return state.basket.tickets[`${band.id}_${variant.id}`]?.qty ?? 0;
+  });
   const dispatch = useDispatch();
   const fees = variant.adjusters.reduce((a, b) => {
     if (b.rateType === "FIXED_RATE") {
@@ -47,8 +51,12 @@ const PriceVariant = (props: {
         <p className="">(+ {formatCurrency(fees)} fee)</p>
       </div>
       <div className="col-span-1 flex justify-center gap-4 items-center">
-        <Button>-</Button>
-        <p>0</p>
+        <Button
+          onClick={() => dispatch(removeTicket(`${band.id}_${variant.id}`))}
+        >
+          -
+        </Button>
+        <p>{qty}</p>
         <Button onClick={() => dispatch(addTicket({ ...variant, band }))}>
           +
         </Button>

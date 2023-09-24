@@ -13,20 +13,30 @@ export const basketSlice = createSlice({
   reducers: {
     addTicket: (state, action: PayloadAction<BasketTicket>) => {
       //Just in case variant ids are reused in other bands?
-      const newTicketID = `${action.payload.band.id}_${action.payload.id}`;
-      if (!state.tickets[newTicketID]) {
-        state.tickets[newTicketID] = {
+      const newTicketId = `${action.payload.band.id}_${action.payload.id}`;
+      if (!state.tickets[newTicketId]) {
+        state.tickets[newTicketId] = {
           ticket: action.payload,
           qty: 1,
         };
       } else {
-        state.tickets[newTicketID].qty += 1;
+        state.tickets[newTicketId].qty += 1;
       }
     },
-    removeTicket: (state) => {},
+    removeTicket: (state, action: PayloadAction<string>) => {
+      const target = state.tickets[action.payload];
+      if (!target) {
+        return;
+      }
+      if (target.qty > 1) {
+        target.qty -= 1;
+      } else {
+        delete state.tickets[action.payload];
+      }
+    },
   },
 });
 
-export const { addTicket } = basketSlice.actions;
+export const { addTicket, removeTicket } = basketSlice.actions;
 
 export default basketSlice.reducer;
