@@ -4,11 +4,12 @@ export const performanceApi = createApi({
   reducerPath: "performance",
   baseQuery: fetchBaseQuery({
     baseUrl: `${import.meta.env.VITE_BASE_URL}/`,
-    prepareHeaders: (headers, { getState }) => {
+    prepareHeaders: (headers, {}) => {
       const token = import.meta.env.VITE_LINE_UP_TOKEN;
       if (token) {
         headers.set("authorization", `Bearer ${token}`);
       }
+
       return headers;
     },
   }),

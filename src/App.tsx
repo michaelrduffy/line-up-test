@@ -1,16 +1,16 @@
-import { useState } from "react";
+// import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 
-import type { RootState } from "./store";
-import { useSelector, useDispatch } from "react-redux";
-import { decrement, increment } from "./store/tempSlice";
+// import type { RootState } from "./store";
+// import { useSelector, useDispatch } from "react-redux";
+// import { decrement, increment } from "./store/tempSlice";
 import { useGetPerformanceByIdQuery } from "./services/performance";
 
 function App() {
-  const count = useSelector((state: RootState) => state.counter.value);
-  const dispatch = useDispatch();
+  // const count = useSelector((state: RootState) => state.counter.value);
+  // const dispatch = useDispatch();
 
   const { data, error, isLoading } = useGetPerformanceByIdQuery("21813");
 
